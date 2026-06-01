@@ -1,0 +1,31 @@
+task: binary
+
+data:
+  val_size: 0.15
+  test_size: 0.15
+  random_state: 42
+
+model:
+  hidden_dims: [128, 64, 32]
+  dropout_p: 0.3
+  batch_norm: true
+
+training:
+  epochs: 150
+  batch_size: 32
+  lr: 0.001
+  weight_decay: 0.0001
+  patience: 15
+  lr_patience: 8
+  lr_factor: 0.5
+
+paths:
+  checkpoint: outputs/binary_mlp.pt
+
+optuna:
+  n_trials: 40
+  direction: minimize
+
+mlflow:
+  experiment: binary-mlp
+  run_name: baseline

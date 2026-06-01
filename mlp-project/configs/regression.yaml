@@ -1,0 +1,31 @@
+task: regression
+
+data:
+  val_size: 0.15
+  test_size: 0.15
+  random_state: 42
+
+model:
+  hidden_dims: [256, 128, 64]
+  dropout_p: 0.2
+  batch_norm: true
+
+training:
+  epochs: 200
+  batch_size: 64
+  lr: 0.001
+  weight_decay: 0.0001
+  patience: 20
+  lr_patience: 10
+  lr_factor: 0.5
+
+paths:
+  checkpoint: outputs/regression_mlp.pt
+
+optuna:
+  n_trials: 40
+  direction: minimize
+
+mlflow:
+  experiment: regression-mlp
+  run_name: baseline
